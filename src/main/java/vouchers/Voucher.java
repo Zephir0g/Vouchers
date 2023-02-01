@@ -29,15 +29,29 @@ public class Voucher {
     }
 
     public Voucher() {
-
     }
 
     public String getName() {
         return name;
     }
 
-    public void create() {
-        this.name = name;
+    public void create(int length, String characters, int spaceBetweenCharacters) {
+        String voucher = "";
+        for (int i = 0; i < length; i++) {
+            if(i == spaceBetweenCharacters){
+                voucher += "-";
+            }
+            voucher += characters.charAt((int) (Math.random() * characters.length()));
+        }
+        this.name = voucher;
+    }
+
+    public void create(int length, String characters) {
+        String voucher = "";
+        for (int i = 0; i < length; i++) {
+            voucher += characters.charAt((int) (Math.random() * characters.length()));
+        }
+        this.name = voucher;
     }
 
     public String getDescription() {
@@ -64,23 +78,4 @@ public class Voucher {
         this.access = access;
     }
 
-    public String createVoucher(int length, String characters){
-        String voucher = "";
-        for (int i = 0; i < length; i++) {
-            voucher += characters.charAt((int) (Math.random() * characters.length()));
-        }
-
-        return voucher;
-    }
-
-    public String createVoucher(int length, String characters, int spaceBetweenCharacters){
-        String voucher = "";
-        for (int i = 0; i < length; i++) {
-            if(i == spaceBetweenCharacters){
-                voucher += "-";
-            }
-            voucher += characters.charAt((int) (Math.random() * characters.length()));
-        }
-        return voucher;
-    }
 }
