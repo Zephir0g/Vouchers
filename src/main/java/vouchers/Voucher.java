@@ -2,9 +2,9 @@ package vouchers;
 
 public class Voucher {
 
-    String name, description;
-    int discount;
-    boolean access;
+    private String name, description;
+    private int discount;
+    private boolean access;
 
     public Voucher(String name, String description, int discount, boolean access) {
         this.name = name;
@@ -29,8 +29,58 @@ public class Voucher {
     }
 
     public Voucher() {
+
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void create() {
+        this.name = name;
+    }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public boolean isAccess() {
+        return access;
+    }
+
+    public void setAccess(boolean access) {
+        this.access = access;
+    }
+
+    public String createVoucher(int length, String characters){
+        String voucher = "";
+        for (int i = 0; i < length; i++) {
+            voucher += characters.charAt((int) (Math.random() * characters.length()));
+        }
+
+        return voucher;
+    }
+
+    public String createVoucher(int length, String characters, int spaceBetweenCharacters){
+        String voucher = "";
+        for (int i = 0; i < length; i++) {
+            if(i == spaceBetweenCharacters){
+                voucher += "-";
+            }
+            voucher += characters.charAt((int) (Math.random() * characters.length()));
+        }
+        return voucher;
+    }
 }
