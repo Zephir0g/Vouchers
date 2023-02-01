@@ -16,29 +16,22 @@ public class Voucher {
         this.access = access;
 
         compress(name,  description,  discountCount,  discountPercent,  access);
-
     }
 
-    public Voucher(String name, String description, int discountCount, int discountPercent) {
+    public Voucher(String name, String description, int discountCount, boolean access) {
         this.name = name;
         this.description = description;
         this.discountCount = discountCount;
-        this.discountPercent = discountPercent;
+
+        compress(name,  description,  discountCount,  access);
     }
 
-    public Voucher(String name, String description, int discountCount) {
+    public Voucher(String name, String description, boolean access) {
         this.name = name;
         this.description = description;
-        this.discountCount = discountCount;
-    }
+        this.access = access;
 
-    public Voucher(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public Voucher(String name) {
-        this.name = name;
+        compress(name,  description,  access);
     }
 
     public Voucher() {
@@ -102,6 +95,19 @@ public class Voucher {
     private void compress(String name, String description, int discountCount, int discountPercent, boolean access) {
         System.out.println("Compressing...");
         compress = name + description + discountCount + discountPercent + access;
+        compress = "name= " + name + "\ndescription= " + description + "\ndiscountCount= " + discountCount + "\ndiscountPercent= " + discountPercent + "\naccess= " + access;
+    }
+
+    public void compress(String name, String description, int discountCount, boolean access) {
+        System.out.println("Compressing...");
+        compress = name + description + discountCount + discountPercent;
+        compress = "name= " + name + "\ndescription= " + description + "\ndiscountCount= " + discountCount + "\naccess= " + access;
+    }
+
+    public void compress(String name, String description, boolean access) {
+        System.out.println("Compressing...");
+        compress = name + description + discountCount;
+        compress = "name= " + name + "\ndescription= " + description + "\naccess= " + access;
     }
 
     public String getCompress() {
