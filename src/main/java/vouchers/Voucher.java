@@ -15,7 +15,7 @@ public class Voucher {
         this.discountPercent = discountPercent;
         this.access = access;
 
-        compress(name,  description,  discountCount,  discountPercent,  access);
+        compress(name, description, discountCount, discountPercent, access);
     }
 
     public Voucher(String name, String description, int discountCount, boolean access) {
@@ -23,7 +23,7 @@ public class Voucher {
         this.description = description;
         this.discountCount = discountCount;
 
-        compress(name,  description,  discountCount,  access);
+        compress(name, description, discountCount, access);
     }
 
     public Voucher(String name, String description, boolean access) {
@@ -31,10 +31,14 @@ public class Voucher {
         this.description = description;
         this.access = access;
 
-        compress(name,  description,  access);
+        compress(name, description, access);
     }
 
     public Voucher() {
+    }
+
+    public Voucher(String compressString) {
+        getDecompress(compressString);
     }
 
     public String getName() {
@@ -110,7 +114,36 @@ public class Voucher {
         compress = "name= " + name + "\ndescription= " + description + "\naccess= " + access;
     }
 
-    public String getCompress() {
-        return compress;
+    public String setCompress() {
+        Coder base64 = new Coder();
+
+        return base64.encode(compress);
+    }
+
+    private void getDecompress(String compress) {
+        Coder base64 = new Coder();
+        String decompress = base64.decode(compress);
+        System.out.println(decompress);
+
+        String[] decompressArray = decompress.split("/n");
+        for (String s : decompressArray) {
+            System.out.println(s);
+            if(s.contains("name= ")){
+                name = s.substring(6);
+            }
+            if(s.contains("description= ")){
+                description = s.substring(13);
+            }
+            if(s.contains("discountCount= ")){
+                discountCount = Integer.parseInt(s.substring(15));
+            }
+            if(s.contains("discountPercent= ")){
+                discountPercent = Integer.parseInt(s.substring(17));
+            }
+            if(s.contains("access= ")){
+                access = Boolean.parseBoolean(s.substring(8));
+            }
+        }
+
     }
 }
