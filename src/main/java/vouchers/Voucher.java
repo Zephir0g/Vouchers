@@ -3,29 +3,33 @@ package vouchers;
 public class Voucher {
 
     private String name, description;
-    private int discount;
+    private int discountCount, discountPercent;
     private boolean access;
 
-    public Voucher(String name, String description, int discount, boolean access) {
+    public Voucher(String name, String description, int discountCount, int discountPercent, boolean access) {
         this.name = name;
         this.description = description;
-        this.discount = discount;
+        this.discountCount = discountCount;
+        this.discountPercent = discountPercent;
         this.access = access;
     }
 
-    public Voucher(String name, String description, int discount) {
+    public Voucher(String name, String description, int discountCount, int discountPercent) {
         this.name = name;
         this.description = description;
-        this.discount = discount;
+        this.discountCount = discountCount;
+        this.discountPercent = discountPercent;
+    }
+
+    public Voucher(String name, String description, int discountCount) {
+        this.name = name;
+        this.description = description;
+        this.discountCount = discountCount;
     }
 
     public Voucher(String name, String description) {
         this.name = name;
         this.description = description;
-    }
-
-    public Voucher(String name) {
-        this.name = name;
     }
 
     public Voucher() {
@@ -62,12 +66,12 @@ public class Voucher {
         this.description = description;
     }
 
-    public int getDiscount() {
-        return discount;
+    public int getDiscountCount() {
+        return discountCount;
     }
 
-    public void setDiscount(int discount) {
-        this.discount = discount;
+    public void setDiscountCount(int discountCount) {
+        this.discountCount = discountCount;
     }
 
     public boolean isAccess() {
@@ -78,4 +82,13 @@ public class Voucher {
         this.access = access;
     }
 
+    @Override
+    public String toString() {
+        return "Voucher{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", discount=" + discountCount +
+                ", access=" + access +
+                '}';
+    }
 }
