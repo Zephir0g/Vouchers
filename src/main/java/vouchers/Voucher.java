@@ -121,29 +121,25 @@ public class Voucher {
     }
 
     private void getDecompress(String compress) {
+        System.out.println("Decompressing...");
         Coder base64 = new Coder();
         String decompress = base64.decode(compress);
-        System.out.println(decompress);
 
         String[] decompressArray = decompress.split("/n");
         for (String s : decompressArray) {
-            System.out.println(s);
-            if(s.contains("name= ")){
+            if (s.contains("name= ")) {
                 name = s.substring(6);
-            }
-            if(s.contains("description= ")){
+            } else if (s.contains("description= ")) {
                 description = s.substring(13);
-            }
-            if(s.contains("discountCount= ")){
+            } else if (s.contains("discountCount= ")) {
                 discountCount = Integer.parseInt(s.substring(15));
-            }
-            if(s.contains("discountPercent= ")){
+            } else if (s.contains("discountPercent= ")) {
                 discountPercent = Integer.parseInt(s.substring(17));
-            }
-            if(s.contains("access= ")){
+            } else if (s.contains("access= ")) {
                 access = Boolean.parseBoolean(s.substring(8));
             }
         }
-
     }
+
 }
+

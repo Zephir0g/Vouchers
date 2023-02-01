@@ -7,6 +7,7 @@ public class Main {
 
 
         Voucher voucher1 = new Voucher(voucher.setCompress());
+        System.out.println(voucher1.getName());
        // voucher.create(10, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
 
