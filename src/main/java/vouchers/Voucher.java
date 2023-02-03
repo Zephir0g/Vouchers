@@ -1,5 +1,8 @@
 package vouchers;
 
+import java.util.Arrays;
+import java.util.Base64;
+
 public class Voucher {
 
     private String name, description;
@@ -96,49 +99,51 @@ public class Voucher {
     }
 
 
+    private void cp(Voucher v){
+        System.out.println("C C...");
+
+    }
+
     private void compress(String name, String description, int discountCount, int discountPercent, boolean access) {
         System.out.println("Compressing...");
-        compress = name + description + discountCount + discountPercent + access;
         compress = "name= " + name + "\ndescription= " + description + "\ndiscountCount= " + discountCount + "\ndiscountPercent= " + discountPercent + "\naccess= " + access;
     }
 
     public void compress(String name, String description, int discountCount, boolean access) {
         System.out.println("Compressing...");
-        compress = name + description + discountCount + discountPercent;
         compress = "name= " + name + "\ndescription= " + description + "\ndiscountCount= " + discountCount + "\naccess= " + access;
     }
 
     public void compress(String name, String description, boolean access) {
         System.out.println("Compressing...");
-        compress = name + description + discountCount;
         compress = "name= " + name + "\ndescription= " + description + "\naccess= " + access;
     }
 
     public String setCompress() {
-        Coder base64 = new Coder();
 
-        return base64.encode(compress);
+        return Base64.getEncoder().encodeToString(compress.getBytes());
     }
 
-    private void getDecompress(String compress) {
+    public void getDecompress(String compress) {
         System.out.println("Decompressing...");
         Coder base64 = new Coder();
         String decompress = base64.decode(compress);
 
-        String[] decompressArray = decompress.split("/n");
+        String[] decompressArray = decompress.split("\\n");
         for (String s : decompressArray) {
             if (s.contains("name= ")) {
-                name = s.substring(6);
+                this.name = s.substring(6);
             } else if (s.contains("description= ")) {
-                description = s.substring(13);
+                this.description = s.substring(13);
             } else if (s.contains("discountCount= ")) {
-                discountCount = Integer.parseInt(s.substring(15));
+                this.discountCount = Integer.parseInt(s.substring(15));
             } else if (s.contains("discountPercent= ")) {
-                discountPercent = Integer.parseInt(s.substring(17));
+                this.discountPercent = Integer.parseInt(s.substring(17));
             } else if (s.contains("access= ")) {
-                access = Boolean.parseBoolean(s.substring(8));
+                this.access = Boolean.parseBoolean(s.substring(8));
             }
         }
+
     }
 
 }
